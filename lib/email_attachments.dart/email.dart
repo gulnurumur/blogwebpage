@@ -1,39 +1,45 @@
-
 import 'package:flutter_web/material.dart';
+import 'package:flutter_web/services.dart';
+import 'dart:async';
 
-class Mail extends StatefulWidget {
-  @override
-  _MailState createState() => _MailState();
+
+class FlutterEmailSender {
+  static const MethodChannel _channel =
+    const MethodChannel('flutter_email_sender');
+
+    static Future<void> send(Email mail){
+      return _channel.invokeMethod('send',mail.toJson());
+    }
 }
 
-class _MailState extends State<Mail> {
-  String attachment;
+class Email{
+  final String subject;
+  final List<String> recipients;
+  final List<String> cc;
+  final List<String> bcc;
+  final String body;
+  final String attachmentPath;
 
-  final _recipientController =TextEditingController(
-    text: 'example@example.com',
-  );
+  Email({
+    this.subject='',
+    this.recipients= const [],
+    this.cc= const [],
+    this.bcc= const [],
+    this.body='',
+    this.attachmentPath,
 
-  final _subjectController =TextEditingController(
-    text: 'The subject'
-  );
- //merhaba sjkfhkfhskjdf
-  final _bodyController=TextEditingController(
-    text: 'Mail body'
-  );
+  });
 
-  final GlobalKey<ScaffoldState> _scaffoldKey=GlobalKey<ScaffoldState>();
-
-  Future<void> send() async {
-    final Email email =Email(
-      body: _bodyController
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      
-    );
+  Map<String, dynamic> toJson(){
+    return {
+      'subject':subject,
+      'body':body,
+      'recipients':recipients,
+      'cc':cc,
+      'bcc':bcc,
+      'attachment_path':attachmentPath,
+    };
   }
 }
+
 
