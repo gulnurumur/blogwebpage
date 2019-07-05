@@ -2,15 +2,15 @@ import 'package:blogwebpage/utils/responsive.dart';
 import 'package:flutter_web/material.dart';
 
 class NavBar extends StatelessWidget {
-  //Bu class yukarı alandaki nesneler için..
-  //Responsive classımı import ettim çünkü bütün ekran boyutları için tasarımı yapmalıyım bunun için if kullandım.
-  final navLinks = ["About Me", "Skills", "Blog","Language"]; //Array 
+  final navLinks = ["About Me", "Skills", "Blog", "Language"]; //Array
 
   List<Widget> navItem() {
     return navLinks.map((text) {
       return Padding(
         padding: EdgeInsets.only(left: 18),
-        child: Text(text, style: TextStyle(fontFamily: "Montserrat-Bold",color: Colors.white)),
+        child: Text(text,
+            style:
+                TextStyle(fontFamily: "Montserrat-Bold", color: Colors.white)),
       );
     }).toList();
   }
@@ -19,7 +19,6 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 45, vertical: 38),
-      
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -28,9 +27,11 @@ class NavBar extends StatelessWidget {
               Container(
                 width: 60,
                 height: 60,
-                decoration: BoxDecoration(//buton oluşturmak için.
+                decoration: BoxDecoration(
+                    //buton oluşturmak için.
                     borderRadius: BorderRadius.circular(18),
-                    gradient: LinearGradient(colors: [ //buton için renk geçişi.
+                    gradient: LinearGradient(colors: [
+                      //buton için renk geçişi.
                       Color(0xFFC86DD7),
                       Color(0xFF3023AE),
                     ], begin: Alignment.bottomRight, end: Alignment.topLeft)),
@@ -42,18 +43,19 @@ class NavBar extends StatelessWidget {
               SizedBox(
                 width: 16,
               ),
-              Text("GU", style: TextStyle(fontSize: 26,color: Colors.white))
+              Text("GU", style: TextStyle(fontSize: 26, color: Colors.white))
             ],
           ),
-          if (!ResponsiveLayout.isSmallScreen(context)) 
+          if (!ResponsiveLayout.isSmallScreen(context))
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[...navItem()]..add(InkWell(
+              children: <Widget>[...navItem()]..add(
+                  InkWell(
                     child: Container(
-                  margin: EdgeInsets.only(left: 20),
-                  width: 120,
-                  height: 40,
-                 /* decoration: BoxDecoration(
+                      margin: EdgeInsets.only(left: 20),
+                      width: 120,
+                      height: 40,
+                      /* decoration: BoxDecoration(
                       gradient: LinearGradient(
                           colors: [Color(0xFFC86DD7), Color(0xFF3023AE)],
                           begin: Alignment.bottomRight,
@@ -76,15 +78,15 @@ class NavBar extends StatelessWidget {
                               fontFamily: "Montserrat-Bold")),
                     ),
                  ), */
-                ),
-                ),
+                    ),
+                  ),
                 ),
             )
           else
-            Image.network("assets/menu.png", width: 26, height: 26) 
-            //web adlı klasörün içine assets adlı bir klasör oluşturdum. Bu klasörüm içine kullanmak istediğim image attım.
-            //Bir image bu şekilde kullanmak istiyorsam Image.network kullanmam gerek. 
-            //Image =>network,asset,memory 
+            Image.network("assets/menu.png", width: 26, height: 26)
+          //web adlı klasörün içine assets adlı bir klasör oluşturdum. Bu klasörüm içine kullanmak istediğim image attım.
+          //Bir image bu şekilde kullanmak istiyorsam Image.network kullanmam gerek.
+          //Image =>network,asset,memory
         ],
       ),
     );

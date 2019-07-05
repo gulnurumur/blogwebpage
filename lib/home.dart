@@ -1,3 +1,4 @@
+import 'package:blogwebpage/contact.dart';
 import 'package:blogwebpage/utils/responsive.dart';
 import 'package:blogwebpage/widgets/navbar.dart';
 //import 'package:blogwebpage/widgets/sendbtn.dart';
@@ -111,7 +112,14 @@ class LargeChild extends StatelessWidget {
                         child: Material(
                           color: Colors.transparent,
                           child: GestureDetector(
-                            onTap: () {},
+                            //tıklanıldığında çalışacak part.
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Contact(),
+                                  ));
+                            },
                             child: Center(
                               child: Text(
                                 "Contact Me",
@@ -147,7 +155,7 @@ class SmallChild extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              "Hi Im Gülnur :)",
+              "Hi Im Gulnur :)",
               style: TextStyle(
                   fontSize: 40,
                   color: Colors.white,
